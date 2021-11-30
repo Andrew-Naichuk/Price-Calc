@@ -6,43 +6,45 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<h1>Калькулятор стоимости занятий</h1>
-
-	<h3>Изучаемый язык:</h3>
-		<div class="row">
-			<button id="btn-deu" class="active">Немецкий</button>
-			<button id="btn-eng" class="inactive">Английский</button>
-		</div>
-
-	<h3>Продолжительность занятий:</h3>
-		<div id="type-main" class="row">
-			<button id="btn-45" class="inactive">45 минут</button>
-			<button id="btn-60" class="active">60 минут</button>
-			<button id="btn-90" class="inactive">90 минут</button>
-		</div>
-		<h5 id="notice">* Все групповые занятия продолжительностью исключительно 90 минут</h5>
-	<h3>Тип занятий:</h3>
-		<div class="row">
-			<button id="btn-group" class="inactive">Групповые</button>
-			<button id="btn-indiv" class="active">Личные</button>
-			<button id="btn-minig" class="inactive">Мини-группа</button>
-		</div>
-
-	<h3>Формат занятий:</h3>
-		<div class="row">
-			<button id="btn-online" class="active">Онлайн</button>
-			<button id="btn-ofline" class="inactive">Офлайн</button>
-		</div>
-
-	<h3>Количество занятий:</h3>
-		<div class="row">
-			<button id="btn-minus">−</button>
-			<h4 id="class-amount">1</h4>
-			<button id="btn-plus">+</button>
-		</div>
-
-	<h3>Общая стоимость:</h3>
-	<h3 id="total-price">₴350</h3>
-<script src="script.js"></script>
+	<div class="container">
+		<h1>Language Classes Price</h1>
+	
+		<h3>Language to learn:</h3>
+			<div class="row">
+				<button id="btn-deu" class="active">German</button>
+				<button id="btn-eng" class="inactive">English</button>
+			</div>
+	
+		<h3>Class duration:</h3>
+			<div id="type-main" class="row">
+				<button id="btn-45" class="inactive">45 min</button>
+				<button id="btn-60" class="active">60 min</button>
+				<button id="btn-90" class="inactive">90 min</button>
+			</div>
+			<h5 id="notice">* All group classes are available only in 90 min duration</h5>
+		<h3>Classes type:</h3>
+			<div class="row">
+				<button id="btn-group" class="inactive">Group</button>
+				<button id="btn-indiv" class="active">Personal</button>
+				<button id="btn-minig" class="inactive">Mini-group</button>
+			</div>
+	
+		<h3>Classes format:</h3>
+			<div class="row">
+				<button id="btn-online" class="active">Online</button>
+				<button id="btn-ofline" class="inactive">Offline</button>
+			</div>
+	
+		<h3>Number of classes:</h3>
+			<div class="row">
+				<button id="btn-minus">−</button>
+				<h4 id="class-amount">1</h4>
+				<button id="btn-plus">+</button>
+			</div>
+	
+		<h3>Total price:</h3>
+		<h3 id="total-price">₴350</h3>
+	<script src="script.js"></script>
+	</div>
 </body>
 </html>

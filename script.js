@@ -1,3 +1,4 @@
+// Getting all the UI elements from DOM:
 const btnPlus = document.querySelector('#btn-plus');
 const btnMinus = document.querySelector('#btn-minus');
 const btnEng = document.querySelector('#btn-eng');
@@ -11,23 +12,24 @@ const btnMinig = document.querySelector('#btn-minig');
 const btnOnline = document.querySelector('#btn-online');
 const btnOfline = document.querySelector('#btn-ofline');
 const notice = document.querySelector('#notice');
-
-let durPrice = 0;
-let typePrice = 0;
-let formPrice = 0;
-
 let classesIndicator = document.querySelector('#class-amount');
 let priceIndicator = document.querySelector('#total-price');
 
-let lang = 'deu';
-let dur = 60;
-let deuClassPrice = 350;
-let engClassPrice = 450;
-let classes = 1;
-let price = 350;
+// Setting variables and their initial default values:
+let durPrice = 0;           // additional cost depending on class duration
+let typePrice = 0;          // additional cost depending on class type
+let formPrice = 0;          // additional cost depending on class format
+let lang = 'deu';           // language to learn (german by default)
+let dur = 60;               // class duration (60 min by default)
+let deuClassPrice = 350;    // single german class price
+let engClassPrice = 450;    // single english class price
+let classes = 1;            // number of classes (1 by default)
+let price = 350;            // total price (350 by default due to all settings)
 
+// Hiding group classes notice on the start since default class type is Personal:
 notice.className = 'hidden';
 
+// Function declaration for updating the total price:
 function priceUpdate() {
     if (classes < 1) {
         classes = 1
@@ -41,130 +43,115 @@ function priceUpdate() {
     priceIndicator.innerHTML = '₴' + price
 };
 
+// Function declaration for updating 3 active-inactive buttons classes on click:
+function classNameChanges3(toActive, toInactive1, toInactive2) {
+    toActive.className = 'active'
+    toInactive1.className = 'inactive'
+    toInactive2.className = 'inactive'
+};
 
+// Function declaration for updating 3 active-disabled buttons classes on click:
+function classNameChanges3Dis(toActive, toDisabled1, toDisabled2) {
+    toActive.className = 'active'
+    toDisabled1.className = 'disabled'
+    toDisabled2.className = 'disabled'
+};
 
-btn45.addEventListener('click', durTo45 = () => {
+// Function declaration for updating 2 active-inactive buttons classes on click:
+function classNameChanges2(toActive, toInactive) {
+    toActive.className = 'active'
+    toInactive.className = 'inactive'
+};
+
+// Duration buttons events processing:
+btn45.addEventListener('click', function() {
     if (btn45.className != 'active') {
-        btn45.className = 'active'
-        btn60.className = 'inactive'
-        btn90.className = 'inactive'
+        classNameChanges3(btn45,btn60,btn90)
         durPrice = -60
         priceUpdate()
-    } else return
+    }
 });
-    
-btn60.addEventListener('click', durTo60 = () => {
+btn60.addEventListener('click', function() {
     if (btn60.className != 'active') {
-        btn45.className = 'inactive'
-        btn60.className = 'active'
-        btn90.className = 'inactive'
+        classNameChanges3(btn60,btn90,btn45)
         durPrice = 0
         priceUpdate()
-    } else return
+    }
 });
-
-btn90.addEventListener('click', durTo90 = () => {
+btn90.addEventListener('click', function() {
     if (btn90.className != 'active') {
-        btn45.className = 'inactive'
-        btn60.className = 'inactive'
-        btn90.className = 'active'
+        classNameChanges3(btn90,btn60,btn45)
         durPrice = 100
         priceUpdate()
-    } else return
+    }
 });
 
-
-
-btnGroup.addEventListener('click', typeToGroup = () => {
+// Type buttons events processing:
+btnGroup.addEventListener('click', function() {
     if (btnGroup.className != 'active') {
-        btnGroup.className = 'active'
-        btnIndiv.className = 'inactive'
-        btnMinig.className = 'inactive'
+        classNameChanges3(btnGroup,btnIndiv,btnMinig)
         typePrice = -90
         notice.className = ''
-        btn45.className = 'disabled'
-        btn60.className = 'disabled'
-        btn90.className = 'active'
+        classNameChanges3Dis(btn90,btn60,btn45)
         durPrice = 100
         priceUpdate()
-    } else return
+    }
 });
-
-btnIndiv.addEventListener('click', typeToIndiv = () => {
+btnIndiv.addEventListener('click', function() {
     if (btnIndiv.className != 'active') {
-        btnIndiv.className = 'active'
-        btnGroup.className = 'inactive'
-        btnMinig.className = 'inactive'
+        classNameChanges3(btnIndiv,btnMinig,btnGroup)
         typePrice = 0
         notice.className = 'hidden'
-        btn45.className = 'inactive'
-        btn60.className = 'inactive'
-        btn90.className = 'active'
+        classNameChanges3(btn90,btn60,btn45)
         durPrice = 100
         priceUpdate()
-    } else return
+    }
 });
-
-btnMinig.addEventListener('click', typeToMinig = () => {
+btnMinig.addEventListener('click', function() {
     if (btnMinig.className != 'active') {
-        btnMinig.className = 'active'
-        btnIndiv.className = 'inactive'
-        btnGroup.className = 'inactive'
+        classNameChanges3(btnMinig,btnIndiv,btnGroup)
         typePrice = -50
         notice.className = ''
-        btn45.className = 'disabled'
-        btn60.className = 'disabled'
-        btn90.className = 'active'
+        classNameChanges3Dis(btn90,btn60,btn45)
         durPrice = 100
         priceUpdate()
-    } else return
+    }
 });
 
-
-
-btnOnline.addEventListener('click', formToOnline = () => {
+// Format buttons events processing:
+btnOnline.addEventListener('click', function() {
     if (btnOnline.className != 'active') {
-        btnOnline.className = 'active'
-        btnOfline.className = 'inactive'
-        formPrice = 0;
+        classNameChanges2(btnOnline,btnOfline)
+        formPrice = 0
         priceUpdate()
-    } else return
+    }
 });
-
-btnOfline.addEventListener('click', formToOfline = () => {
+btnOfline.addEventListener('click', function() {
     if (btnOfline.className != 'active') {
-        btnOfline.className = 'active'
-        btnOnline.className = 'inactive'
-        formPrice = 250;
+        classNameChanges2(btnOfline,btnOnline)
+        formPrice = 250
         priceUpdate()
-    } else return
+    }
 });
 
-
-
-btnDeu.addEventListener('click', langToDeu = () => {
-    btnDeu.className = 'active'
-    btnEng.className = 'inactive'
+// Language choice buttons events processing:
+btnDeu.addEventListener('click', function() {
+    classNameChanges2(btnDeu,btnEng)
     lang = 'deu'
     priceUpdate()
 });
-
-btnEng.addEventListener('click', langToEng = () => {
-    btnDeu.className = 'inactive'
-    btnEng.className = 'active'
+btnEng.addEventListener('click', function() {
+    classNameChanges2(btnEng,btnDeu)
     lang = 'eng'
     priceUpdate()
 });
 
-
-
-btnPlus.addEventListener('click', plusPrice = () => {
+// Number of classes buttons events processing:
+btnPlus.addEventListener('click', function() {
     classes = ++classes
     priceUpdate()
 });
-
-
-btnMinus.addEventListener('click', minusPrice = () => {
+btnMinus.addEventListener('click', function() {
     classes = --classes
     priceUpdate()
 });
